@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   before_save :default_values
   validates :album_id, :img_url, :profile, :date, presence: true
-  validates :profile,
+  validates :profile, inclusion: {in: [true, false]}
 
   def default_values
     self.profile ||= false
