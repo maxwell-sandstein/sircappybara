@@ -1,7 +1,7 @@
 class Friendship < ActiveRecord::Base
   validates :requestor_id, :requestee_id, :accepted, presence: true
   validates :requestor_id, uniqueness: {scope: :requestee_id}
-  validates :accepted, inclusion: {in [true, false]}
+  validates :accepted, inclusion: {in: [true, false]}
 
   belongs_to(
     :requestor,
