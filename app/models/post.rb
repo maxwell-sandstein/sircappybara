@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  author_id  :integer          not null
+#  wall_id    :integer          not null
+#  body       :text             not null
+#  date       :datetime         not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Post < ActiveRecord::Base
   validates :author_id, :wall_id, :body, :date, presence: true
 

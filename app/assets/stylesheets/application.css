@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require logged-in-header
+ *= require login
+ *= require signup
+ *= require profile
  */

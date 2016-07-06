@@ -23,6 +23,9 @@ SessionStore.__onDispatch = payload => {
   switch(payload.actionType) {
     case SessionConstants.LOGIN:
       _login(payload.currentUser);
+      if (payload.firstTime === true){
+         _currentUser.firstTime = true;
+      }
       SessionStore.__emitChange();
       break;
     case SessionConstants.LOGOUT:
@@ -42,6 +45,10 @@ SessionStore.currentUserHasBeenFetched = function () {
 
 SessionStore.isUserLoggedIn = function() {
   return !!_currentUser.id;
+};
+
+SessionStore.justSignedUp = function(){
+  return _currentUser.firstTime;
 };
 
 module.exports = SessionStore;

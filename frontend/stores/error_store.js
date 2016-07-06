@@ -11,7 +11,7 @@ let _form = "";
 
 function setErrors(payload){
   _errors = payload.errors;
-  _form = payload.form;
+  _form = payload.form; //modify
   ErrorStore.__emitChange();
 }
 

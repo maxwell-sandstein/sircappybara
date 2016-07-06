@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: friendships
+#
+#  id           :integer          not null, primary key
+#  requestor_id :integer          not null
+#  requestee_id :integer          not null
+#  accepted     :boolean          default(FALSE), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Friendship < ActiveRecord::Base
   validates :requestor_id, :requestee_id, :accepted, presence: true
   validates :requestor_id, uniqueness: {scope: :requestee_id}

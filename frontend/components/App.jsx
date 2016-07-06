@@ -4,7 +4,7 @@ const React = require('react');
 const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
-const NavBar = require('../components/navbar/navbar.jsx');
+const NoSessionHome = require('./session/no_session_home.jsx');
 
 
 
@@ -16,11 +16,7 @@ const App = React.createClass({
 
   render() {
     return (
-      <div>
-        <NavBar />
-        <header>
-          <Link to="/" className="header-link"><h1>Sir Capstone, III</h1></Link>
-        </header>
+      <div className="App">
         {this.props.children}
       </div>
     );

@@ -4,14 +4,15 @@ const AppDispatcher = require('../dispatcher/dispatcher');
 const SessionConstants = require('../constants/session_constants');
 const SessionApiUtil = require('../util/session_api_util');
 const ErrorActions = require('./error_actions');
-const hashHistory = require('react-router').hashHistory;
+const ReactRouter = require('react-router');
+const browserHistory = ReactRouter.browserHistory;
 
 const SessionActions = {
 
   signUp(formData){
     SessionApiUtil.signUp(
       formData,
-      SessionActions.receiveCurrentUser,
+      SessionActions.receiveCurrentFirstTimeUser,
       ErrorActions.setErrors);
   },
 
@@ -35,7 +36,16 @@ const SessionActions = {
   receiveCurrentUser(currentUser) {
     AppDispatcher.dispatch({
       actionType: SessionConstants.LOGIN,
-      currentUser: currentUser
+      currentUser: currentUser,
+      firstTime: false
+    });
+  },
+
+  receiveCurrentFirstTimeUser(currentUser){
+    AppDispatcher.dispatch({
+      actionType: SessionConstants.LOGIN,
+      currentUser: currentUser,
+      firstTime: true
     });
   },
 
@@ -43,7 +53,7 @@ const SessionActions = {
     AppDispatcher.dispatch({
       actionType: SessionConstants.LOGOUT
     });
-    hashHistory.push("/login");
+    browserHistory.push("/");
   }
 
 };

@@ -3,7 +3,8 @@ class CreatePhotos < ActiveRecord::Migration
     create_table :photos do |t|
       t.integer :album_id, null: false
       t.string :img_url, null: false
-      t.boolean :profile, default: false, null: false
+      t.boolean :profile, default: false
+      t.boolean :cover, default: false
       t.date :date, null: false
       t.text :caption
 
