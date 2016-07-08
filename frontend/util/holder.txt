@@ -1,0 +1,22 @@
+// <div className='friends-tab'>
+//   <div className='friends-header'>
+//     <h2>Friends</h2>
+//   </div>
+//   <div className='friends-display'>
+//
+//     <ul>
+//       {
+//         this.state.friends.map((friend) => {
+//           return (<li className='friend-display'>
+//             <a onClick={this.changeProfile.bind(this, friend.id)}>
+//               <img className='friend-img' src={friend.img_url} />
+//             </a>
+//             <a className='friend-title' onClick={this.changeProfile.bind(this, friend.id)}>
+//               {friend.name}
+//             </a>
+//           </li>);
+//         })
+//       }
+//     </ul>
+//   </div>
+// </div>

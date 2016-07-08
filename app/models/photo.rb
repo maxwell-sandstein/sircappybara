@@ -39,9 +39,10 @@ class Photo < ActiveRecord::Base
   end
 
   def ensure_single_cover
-    self.album.photos.each do |photo|
-      photo.cover = false unless photo == self
-      photo.save!
+    neighbors = self.album.photos.where('cover = ? AND id != ?', true, self.id)
+    neighbors.each do |neighbor|
+     neighbor.cover = false;
+     neighbor.save
     end
   end
 

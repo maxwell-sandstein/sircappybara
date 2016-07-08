@@ -33,23 +33,94 @@ class User < ActiveRecord::Base
 
   has_many(
     :friend_requests_made,
-    class_name: :friendship,
+    class_name: :Friendship,
     foreign_key: :requestor_id
   )
   has_many(
-    :friend_requests_accepted,
-    class_name: :friendship,
+    :friend_requests_received,
+    class_name: :Friendship,
     foreign_key: :requestee_id
   )
 
+  def friends
+    binds = {id: self.id}
+
+    friend_ids = Friendship.find_by_sql([<<-SQL, binds])
+      SELECT
+        users.id AS user_id
+      FROM friendships f
+      JOIN users ON users.id = f.requestor_id
+      WHERE f.requestee_id = :id
+        AND f.accepted = 'true'
+      UNION
+      SELECT
+        users.id AS user_id
+      FROM friendships f
+      JOIN users ON users.id = f.requestee_id
+      WHERE f.requestor_id = :id
+        AND f.accepted = 'true'
+    SQL
+
+
+    friend_ids = friend_ids.map do |friend|
+      friend.user_id
+    end
+
+    return [] if friend_ids.empty?
+
+    User.where(id: friend_ids)
+  end
+
+  def outstanding_requests
+    binds = {id: self.id}
+
+    friend_requested_ids = Friendship.find_by_sql([<<-SQL, binds])
+      SELECT
+        users.id AS user_id
+      FROM friendships f
+      JOIN users ON users.id = f.requestee_id
+      WHERE f.requestor_id = :id
+        AND f.accepted = 'false'
+    SQL
+
+    friend_requested_ids = friend_requested_ids.map do |friend|
+      friend.user_id
+    end
+
+    return [] if friend_requested_ids.empty?
+
+    User.where(id: friend_requested_ids)
+  end
+
+  def friend_requests
+    binds = {id: self.id}
+
+    friend_requestor_ids = Friendship.find_by_sql([<<-SQL, binds])
+      SELECT
+        users.id AS user_id
+      FROM friendships f
+      JOIN users ON users.id = f.requestor_id
+      WHERE f.requestee_id = :id
+        AND f.accepted = 'false'
+    SQL
+
+    friend_requestor_ids = friend_requestor_ids.map do |friend|
+      friend.user_id
+    end
+
+    return [] if friend_requestor_ids.empty?
+
+    User.where(id: friend_requestor_ids)
+  end
+
   has_one(
     :relationship_made,
-    class_name: :relationship,
+    class_name: :Relationship,
     foreign_key: :requestor_id
   )
   has_one(
     :relationship_accepted,
-    class_name: :relationship,
+    class_name: :Relationship,
     foreign_key: :requestee_id
   )
 
@@ -59,12 +130,12 @@ class User < ActiveRecord::Base
 
   has_many(
     :messages_recieved,
-    class_name: :messages,
+    class_name: :Messages,
     foreign_key: :receiver_id
   )
   has_many(
     :messages_sent,
-    class_name: :messages,
+    class_name: :Messages,
     foreign_key: :sender_id
   )
 
@@ -88,13 +159,13 @@ class User < ActiveRecord::Base
 
   has_many(
     :posts_authored,
-    class_name: :post,
+    class_name: :Post,
     foreign_key: :author_id
   )
 
   has_many(
     :wall_posts,
-    class_name: :post,
+    class_name: :Post,
     foreign_key: :wall_id
   )
 
@@ -175,6 +246,7 @@ class User < ActiveRecord::Base
     Album.create({title: DEFAULT_ALBUM_TITLES[:profile], user_id: self.id});
     Album.create({title: DEFAULT_ALBUM_TITLES[:cover], user_id: self.id});
   end
+
 end
 
 class Fake_Photo

@@ -29,7 +29,7 @@ UserStore.__onDispatch = function(payload){
          UserStore.resetProfileUser();
       break;
   }
-
+  
   UserStore.__emitChange();
 }
 

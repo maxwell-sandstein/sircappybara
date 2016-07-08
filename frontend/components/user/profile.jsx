@@ -5,10 +5,13 @@ const Header = require('../Header/Header.jsx')
 const UserStore = require('../../stores/user_store');
 const UserActions = require('../../actions/user_actions');
 const ProfileHeader = require('./profile_header');
+const ProfileNavBar = require('./profile_nav_bar');
+const ProfileMain = require('./profile_main');
+
 
 const ProfilePage = React.createClass({
   getInitialState(){
-    return {user: {}, ownProfile: false};
+    return {user: {}, ownProfile: false, displayedTab: 'timeline'};
   },
 
   componentDidMount(){
@@ -18,16 +21,23 @@ const ProfilePage = React.createClass({
   },
 
   componentWillUnmount(){
-    UserStore.remove(this.profileUserListener);
+    this.profileUserListener.remove()
     UserActions.resetProfileUser();
   },
 
-  componentWillReceiveProps(){
-    this.fetchUser();
+  componentWillReceiveProps(newProps){
+    if (newProps.params.userId !== undefined){
+      this.fetchUser(newProps.params.userId);
+    }
+
+    this.setState({displayedTab: 'timeline'});
   },
 
-  fetchUser(){
-    let id = this.props.params.userId
+  fetchUser(id){
+    if (id === undefined){
+      id = this.props.params.userId
+    }
+
     UserActions.fetchUser(id);
   },
 
@@ -47,13 +57,33 @@ const ProfilePage = React.createClass({
     return (SessionStore.currentUser().id === this.state.user.id);
   },
 
+  renderTimeline(e){
+    if (e !== undefined){
+     e.preventDefault();
+    }
+
+    this.setState({displayedTab: 'timeline'});
+  },
+
+  renderAbout(e){
+    e.preventDefault()
+    this.setState({displayedTab: 'about'})
+  },
+
+  renderFriends(e){
+    e.preventDefault()
+    this.setState({displayedTab: 'friends'})
+  },
+
   render(){
+
     return (
       <div className='profile-page'>
         <Header/>
         <ProfileHeader ownProfile={this.state.ownProfile} user={this.state.user}/>
-        <span>{this.state.user.name}</span>
-        <span>Successfully hit profile</span>
+        <ProfileNavBar user={this.state.user} renderTimeline={this.renderTimeline}
+          renderAbout={this.renderAbout} renderFriends={this.renderFriends} displayedTab={this.state.displayedTab} />
+        <ProfileMain user={this.state.user} displayedTab={this.state.displayedTab} ownProfile={this.state.ownProfile}/>
       </div>
     );
   }

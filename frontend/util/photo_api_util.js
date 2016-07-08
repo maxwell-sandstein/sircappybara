@@ -1,26 +1,14 @@
 
   module.exports = {
-    createProfilePic(userId, albumId, json, success){
+    createPhoto(userId, albumId, json, success){
       $.ajax({
   			url: `/api/users/${userId}/albums/${albumId}/photos`,
   			type: 'POST',
   			data: json,
   			success,
         error: function (xhr) {
-          console.log("Error in Photo Util #createProfilePic");
+          console.log("Error in Photo Util #createPhoto");
         }
   		});
-    },
-
-    createCoverPhoto(userId, albumId, json, success){
-      $.ajax({
-        url: `/api/users/${userId}/albums/${albumId}/photos`,
-        type: 'POST',
-        data: json,
-        success,
-        error: function (xhr) {
-          console.log("Error in Photo Util #createCoverPic");
-        }
-      });
     }
   }

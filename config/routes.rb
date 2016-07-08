@@ -4,7 +4,11 @@ Rails.application.routes.draw do
       resources :albums, only: [:index] do
         resources :photos, only: [:create]
       end
+
+      resources :friends, only: [:index]
     end
+
+    resources :friends, only: [:create, :update]
     resource :session, only: [:create, :destroy, :show]
   end
 
