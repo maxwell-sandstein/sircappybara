@@ -26,6 +26,28 @@ const FriendActions = {
       actionType: FriendConstants.FRIENDS_OF_USER,
       friends: friends
     });
+  },
+
+  fetchFriendRequests: function(user_id){
+    ApiUtil.fetchFriendRequests(user_id, this.receiveFriendRequests)
+  },
+
+  receiveFriendRequests: function(friends){
+    AppDispatcher.dispatch({
+      actionType: FriendConstants.FRIEND_REQUESTS,
+      friends: friends
+    });
+  },
+
+  confirmRequest: function(requestorId, requesteeId){
+    ApiUtil.confirmRequest(requestorId, requesteeId, this.removePendingRequest)
+  },
+
+  removePendingRequest: function(newFriend){
+    AppDispatcher.dispatch({
+      actionType: FriendConstants.NEW_FRIEND,
+      newFriendId: newFriend.id
+    });
   }
 }
 

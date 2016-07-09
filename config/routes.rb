@@ -4,8 +4,10 @@ Rails.application.routes.draw do
       resources :albums, only: [:index] do
         resources :photos, only: [:create]
       end
-
+      resources :friend_requests, only:[:index, :update, :destroy]
       resources :friends, only: [:index]
+      resources :posts, only: [:index, :create]
+      resources :feeds, only: [:index]
     end
 
     resources :friends, only: [:create, :update]

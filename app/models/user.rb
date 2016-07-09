@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
     foreign_key: :requestee_id
   )
 
+
+
   def friends
     binds = {id: self.id}
 
@@ -168,6 +170,26 @@ class User < ActiveRecord::Base
     class_name: :Post,
     foreign_key: :wall_id
   )
+
+  # def wall_posts
+  #   self.unsorted_wall_posts.sort do |left, right|
+  #     right.id <=> left.id
+  #   end
+  # end
+
+  def feed_posts
+    friends = self.friends
+    feed_posts = []
+    friends.each do |friend|
+      feed_posts = feed_posts + friend.wall_posts
+    end
+
+    # feed_posts.sort! do |left, right|
+    #   right.id <=> left.id
+    # end
+
+    feed_posts
+  end
 
   has_many(
     :shares

@@ -6,6 +6,10 @@ const UserActions = require('../../actions/user_actions');
 const Header = require('../Header/Header');
 const SessionStore = require('../../stores/session_store');
 
+const PostActions = require('../../actions/post_actions');
+const PostStore = require('../../stores/post_store');
+const Post = require('../posts/post');
+
 const ReactRouter = require('react-router');
 const browserHistory = ReactRouter.browserHistory;
 
@@ -14,12 +18,22 @@ const Feed = React.createClass({
     return {
       gender: undefined,
       breed: undefined,
-      birthday: undefined
+      birthday: undefined,
+      posts: []
     };
   },
 
-  handleLogout(){
-    SessionActions.logOut();
+  componentDidMount(){
+    this.listenerId = PostStore.addListener(this.updateFeed);
+    PostActions.fetchFeedPosts(SessionStore.currentUser().id);
+  },
+
+  componentWillUnmount(){
+    this.listenerId.remove();
+  },
+
+  updateFeed(){
+    this.setState({posts: PostStore.feedPosts()})
   },
 
   handleUserInfoSubmit(e){
@@ -91,7 +105,6 @@ const Feed = React.createClass({
 
             <input type='submit' value='Update' className='additional-info-submit-btn' />
           </form>
-            <button onClick={this.handleLogout}>Log Out</button>
         </div>
       )
     }
@@ -99,9 +112,18 @@ const Feed = React.createClass({
       return(
         <div className="feed">
           <Header />
-          <a onClick={this.goToFirstUser}>First User</a>
-          Feed Running
-          <button onClick={this.handleLogout}>Log Out</button>
+          <div className='post-holder'>
+            <ul>
+              {
+                this.state.posts.map((post) => {
+                  return (
+                    <Post feed={true} post={post} />
+                  )
+                })
+              }
+            </ul>
+          </div>
+
         </div>
       );
     }

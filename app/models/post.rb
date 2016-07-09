@@ -6,13 +6,12 @@
 #  author_id  :integer          not null
 #  wall_id    :integer          not null
 #  body       :text             not null
-#  date       :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class Post < ActiveRecord::Base
-  validates :author_id, :wall_id, :body, :date, presence: true
+  validates :author_id, :wall_id, :body, presence: true
 
   has_many(
     :shares
@@ -20,25 +19,25 @@ class Post < ActiveRecord::Base
 
   belongs_to(
     :author,
-    class_name: :user,
+    class_name: :User,
     foreign_key: :author_id
   )
 
   belongs_to(
     :wall,
-    class_name: :user,
+    class_name: :User,
     foreign_key: :wall_id
   )
 
   has_many(
     :comments,
-    class_name: :post_comments,
+    class_name: :Post_comments,
     foreign_key: :post_id
   )
 
   has_many(
     :likes,
-    class_name: :post_like,
+    class_name: :Post_like,
     foreign_key: :post_id
   )
 end

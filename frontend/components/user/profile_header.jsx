@@ -81,12 +81,14 @@ const ProfileHeader = React.createClass({
           <img className='profile-pic' src={this.props.user.profilePic} />
           {profilePhotoBtn}
         </container>
-        <h1 className="user-profile-name">{this.props.user.name}</h1>
+
         <container className="cover-photo-container" >
           <img className='cover-photo' src={this.props.user.coverPhoto} />
           {coverPhotoBtn}
           {this.friendButton()}
+
         </container>
+        <span className='user-profile-name'>{this.props.user.name}</span>
       </header>
     );
   }

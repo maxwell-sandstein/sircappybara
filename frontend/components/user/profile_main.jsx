@@ -8,7 +8,8 @@ const Main = React.createClass({
     let displayed;
     switch(this.props.displayedTab){
       case 'timeline':
-        displayed = <Timeline user={this.props.user} ownProfile={this.props.ownProfile}/>
+        displayed = <Timeline user={this.props.user} profileId={this.props.profileId}
+          ownProfile={this.props.ownProfile}/>
         break;
       case 'about':
         displayed = <About user={this.props.user} ownProfile={this.props.ownProfile}/>

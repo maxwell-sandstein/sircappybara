@@ -1,11 +1,149 @@
-.profile-photo-container{
-  width:100px;
-  height:100px;
-  background-color: #000;
+
+
+.actual-profile{
+  margin: auto;
+  width: 900px;
+  position: relative;
+}
+.profile-header{
+  position:relative;
 }
 
-.cover-photo-container{
-  width:100px;
-  height:100px;
+.profile-photo-container{
+  z-index: 1;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  width:160px;
+  height:160px;
   background-color: #000;
+  border:4px solid #FFF;
+  border-radius: 2px;
+}
+
+.profile-header img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+.cover-photo-container{
+  width:900px;
+  height:150px;
+  position: absolute;
+  background-color: #000;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.user-profile-name{
+  z-index: 2;
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  color: #FFF;
+  text-shadow: 0 0 3px rgba(0, 0, 0, .4);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
+  max-width: 275px;
+}
+
+.profile-nav-bar{
+  width: 900px;
+  height: 40px;
+  background-color: #FFF;
+  position: absolute;
+  top: 150px;
+  border: 1px solid #e9eaed;
+  display: flex;
+}
+
+.nav-flex{
+  display: flex;
+  margin-left:350px;
+  width: 600px;
+}
+
+.profile-nav-bar a{
+  justify-content: space-between;
+  display: block;
+  margin-top: 8px;
+  margin-right: 10px;
+  color: #365899;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.main-profile {
+  position: absolute;
+  top: 240px;
+}
+
+.new-post-input{
+  height: 50px;
+  width: 200px;
+}
+
+.new-post-panel{
+  margin-left: 40px;
+}
+
+.post-holder{
+  display: block;
+  background-color: #FFF;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 600px;
+  border: 1px solid #e9eaed;
+}
+
+.timeline-tab{
+}
+
+.about-display{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #e9eaed;
+  border: 1px solid #bdc7d8;
+  width: 600px;
+}
+
+.about-display span{
+  margin-top: 5px;
+}
+
+.actual-friend-display {
+  display: flex;
+  padding: 10px;
+  background-color: #FFF;
+  border: 1px solid #bdc7d8;
+  width: 600px;
+  position: relative;
+  color: #365899;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.friend-photo-container{
+  width:96px;
+  height:96px;
+  background-color: #000;
+  border:4px solid #FFF;
+  border-radius: 2px;
+}
+
+.friend-photo-container img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.friend-title{
+  position: absolute;
+  top: 50px;
+  left: 325px;
 }

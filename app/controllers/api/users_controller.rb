@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
+    @user.username = @user.username.capitalize unless @user.username.nil?
 
 		if @user.save
 			login(@user)

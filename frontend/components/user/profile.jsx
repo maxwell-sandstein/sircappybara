@@ -44,11 +44,13 @@ const ProfilePage = React.createClass({
   updateProfileUser(){
     let profileUser = UserStore.profileUser();
 
-    this.setState({user: profileUser}, this.checkForOwnProfile);
+    if (this.state.user.id !== profileUser.id){
+      this.setState({user: profileUser}, this.checkForOwnProfile);
+    }
   },
 
   checkForOwnProfile(){
-    if (this.ownProfile()){
+    if (this.ownProfile() && this.state.ownProfile !== true){
       this.setState({ownProfile: true})
     }
   },
@@ -80,10 +82,13 @@ const ProfilePage = React.createClass({
     return (
       <div className='profile-page'>
         <Header/>
-        <ProfileHeader ownProfile={this.state.ownProfile} user={this.state.user}/>
-        <ProfileNavBar user={this.state.user} renderTimeline={this.renderTimeline}
-          renderAbout={this.renderAbout} renderFriends={this.renderFriends} displayedTab={this.state.displayedTab} />
-        <ProfileMain user={this.state.user} displayedTab={this.state.displayedTab} ownProfile={this.state.ownProfile}/>
+        <div className='actual-profile'>
+            <ProfileHeader ownProfile={this.state.ownProfile} user={this.state.user}/>
+            <ProfileNavBar user={this.state.user} renderTimeline={this.renderTimeline}
+              renderAbout={this.renderAbout} renderFriends={this.renderFriends} displayedTab={this.state.displayedTab} />
+            <ProfileMain user={this.state.user} profileId={this.props.params.userId}
+              displayedTab={this.state.displayedTab} ownProfile={this.state.ownProfile}/>
+        </div>
       </div>
     );
   }

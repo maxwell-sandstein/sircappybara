@@ -34,7 +34,7 @@ const Friends = React.createClass({
 
   changeProfile(id){
     browserHistory.push(`/profile/${id}`);
-  }, 
+  },
 
   render(){
     return (
@@ -48,12 +48,16 @@ const Friends = React.createClass({
             {
               this.state.friends.map((friend) => {
                 return (<li key={friend.email} className='friend-display'>
-                  <img onClick={this.changeProfile.bind(this, friend.id)}
-                    className='friend-img' src={friend.img_url} />
-                  <a onClick={this.changeProfile.bind(this, friend.id)} className='friend-title'>
-                    {friend.name}
-                  </a>
-                </li>);
+                    <div className='actual-friend-display'>
+                      <div className='friend-photo-container'>
+                        <img onClick={this.changeProfile.bind(this, friend.id)}
+                          className='friend-img' src={friend.img_url} />
+                      </div>
+                      <a onClick={this.changeProfile.bind(this, friend.id)} className='friend-title'>
+                        {friend.name}
+                      </a>
+                    </div>
+                  </li>);
               })
             }
           </ul>

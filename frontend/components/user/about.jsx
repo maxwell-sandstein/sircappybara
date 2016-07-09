@@ -12,9 +12,9 @@ const About = React.createClass({
           <h2>About</h2>
         </div>
         <div className='about-display'>
-          <span>Name: {this.props.user.name}</span>
-          <span>Gender: {this.props.user.gender}</span>
-          <span>Breed: {this.props.user.breed}</span>
+          <span>Name {this.props.user.name}</span>
+          <span>Gender {this.props.user.gender}</span>
+          <span>Breed {this.props.user.breed}</span>
           <span>Birthday {this.props.user.birthday}</span>
         </div>
       </div>
