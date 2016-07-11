@@ -59,12 +59,10 @@ const Timeline = React.createClass({
           <form onSubmit={this.handleSubmit}>
           <div className='new-post-content'>
             <input type='text' onChange={this.updatePostContent} value={this.state.newPostContent}
-              className='new-post-input'/>
-          </div>
-          <div className='new-post-divider'>
+              className='new-post-input' placeholder="Whats on your mind?"/>
           </div>
           <div className='new-post-btn-container'>
-            <input type='submit' className='post-btn' value='post' />
+            <input type='submit' className='post-btn' value='Post' />
           </div>
           </form>
         </div>
@@ -75,7 +73,7 @@ const Timeline = React.createClass({
     return (
       <div className='timeline-tab'>
         {newPost}
-        <div className='posts'>
+        <div className='timeline-posts'>
           <ul>
             {
               this.state.posts.map((post) => {

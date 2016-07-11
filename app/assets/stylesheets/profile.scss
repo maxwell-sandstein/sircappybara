@@ -12,7 +12,7 @@
 .profile-photo-container{
   z-index: 1;
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: 20px;
   width:160px;
   height:160px;
@@ -53,7 +53,7 @@
 
 .profile-nav-bar{
   width: 900px;
-  height: 40px;
+  height: 43px;
   background-color: #FFF;
   position: absolute;
   top: 150px;
@@ -63,87 +63,62 @@
 
 .nav-flex{
   display: flex;
-  margin-left:350px;
+  margin-left:300px;
   width: 600px;
 }
 
-.profile-nav-bar a{
+.nav-flex:nth-child(1){
+  border-left: 1px solid #e9eaed;
+}
+
+.nav-btn-holder {
   justify-content: space-between;
   display: block;
-  margin-top: 8px;
-  margin-right: 10px;
+  padding: 15px 20px 15px 20px;
   color: #365899;
   cursor: pointer;
   text-decoration: none;
+  border-right: 1px solid #e9eaed;
+}
+
+.nav-btn-holder a {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #365899;
 }
 
 .main-profile {
   position: absolute;
-  top: 240px;
+  top: 220px;
+  width: 900px;
 }
 
-.new-post-input{
-  height: 50px;
-  width: 200px;
-}
 
-.new-post-panel{
-  margin-left: 40px;
-}
 
-.post-holder{
-  display: block;
-  background-color: #FFF;
-  padding: 10px;
-  margin-bottom: 5px;
-  width: 600px;
-  border: 1px solid #e9eaed;
-}
-
-.timeline-tab{
-}
-
-.about-display{
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  background-color: #e9eaed;
-  border: 1px solid #bdc7d8;
-  width: 600px;
-}
-
-.about-display span{
-  margin-top: 5px;
-}
-
-.actual-friend-display {
-  display: flex;
-  padding: 10px;
-  background-color: #FFF;
-  border: 1px solid #bdc7d8;
-  width: 600px;
-  position: relative;
-  color: #365899;
+.friend-request-btn{
+  line-height: 26px;
+  padding: 0 10px;
+  background-color: #f6f7f9;
+  color: #4b4f56;
+  background-clip: padding-box;
+  font-family: inherit;
   font-weight: bold;
-  font-size: 20px;
-}
-
-.friend-photo-container{
-  width:96px;
-  height:96px;
-  background-color: #000;
-  border:4px solid #FFF;
+  border-color: rgba(0, 0, 0, .4);
   border-radius: 2px;
 }
 
-.friend-photo-container img{
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
+.friend-btn-container{
+  z-index: 2;
+  position: absolute;
+  top: 118px;
+  left:800px;
+
 }
 
-.friend-title{
+.cover-photo-btn{
   position: absolute;
-  top: 50px;
-  left: 325px;
+  left: 20px;
+  top: 30px;
 }

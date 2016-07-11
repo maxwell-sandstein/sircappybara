@@ -5,17 +5,42 @@ const UserStore = require('../../stores/user_store');
 
 
 const About = React.createClass({
+
+  breed(){
+    if (this.props.user.breed !== null){
+      return <div className='info-div'><span>Identifies as a {this.props.user.breed}</span></div>;
+    } else{
+      return "";
+    }
+  },
+
+  gender(){
+    if (this.props.user.gender !== null){
+      return <div className='info-div'><span>Gender {this.props.user.gender}</span></div>;
+    } else{
+      return "";
+    }
+  },
+
+  birthday(){
+    if (this.props.user.birthday !== null){
+      return <div className='info-div'><span>Born on {this.props.user.birthday}</span></div>;
+    } else{
+      return "";
+    }
+  },
+
   render(){
     return (
-      <div className='about-tab'>
-        <div className='friends-header'>
+      <div className='profile-tab'>
+        <div className='profile-nav-header'>
           <h2>About</h2>
         </div>
-        <div className='about-display'>
-          <span>Name {this.props.user.name}</span>
-          <span>Gender {this.props.user.gender}</span>
-          <span>Breed {this.props.user.breed}</span>
-          <span>Birthday {this.props.user.birthday}</span>
+        <div className='profile-nav-display'>
+            <span>{this.props.user.name}</span>
+            {this.gender()}
+            {this.breed()}
+            {this.birthday()}
         </div>
       </div>
     )

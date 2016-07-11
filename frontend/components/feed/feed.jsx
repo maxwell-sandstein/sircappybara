@@ -112,7 +112,7 @@ const Feed = React.createClass({
       return(
         <div className="feed">
           <Header />
-          <div className='post-holder'>
+          <div className='feed-posts'>
             <ul>
               {
                 this.state.posts.map((post) => {

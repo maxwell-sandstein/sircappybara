@@ -29,6 +29,17 @@ const UserActions = {
   updateUser(id, form_data){
     const json = {user: form_data};
     ApiUtil.updateUser(id, json, SessionActions.receiveCurrentUser);
+  },
+
+  fetchAllUsers(){
+    ApiUtil.fetchAllUsers(this.receiveAllUsers)
+  },
+
+  receiveAllUsers(allUsers){
+    AppDispatcher.dispatch({
+      actionType: UserConstants.ALL_USERS,
+      users: allUsers
+    })
   }
 
 };

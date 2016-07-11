@@ -10,9 +10,17 @@ const ProfileNavBar = React.createClass({
     return (
       <div className='profile-nav-bar'>
         <div className='nav-flex'>
-          <a className="profile-nav-btn" onClick={this.props.renderTimeline}>Timeline</a>
-          <a className="profile-nav-btn" onClick={this.props.renderAbout}>About</a>
-          <a className="profile-nav-btn" onClick={this.props.renderFriends}>Friends</a>
+          <div className='nav-btn-holder'>
+            <a className="profile-nav-btn" onClick={this.props.renderTimeline}>Timeline</a>
+          </div>
+          <div className='nav-btn-holder'>
+            <a className="profile-nav-btn" onClick={this.props.renderAbout}>About</a>
+          </div>
+          <div className='nav-btn-holder'>
+            <a className="profile-nav-btn" onClick={this.props.renderFriends}>Friends</a>
+          </div>
+
+
         </div>
       </div>
     )

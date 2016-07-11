@@ -11,6 +11,17 @@ module.exports = {
 		});
   },
 
+  fetchAllUsers(success){
+    $.ajax({
+      url:  `/api/users`,
+      method: 'GET',
+      success,
+      error: function (xhr) {
+        console.log("Error in UserApiUtil #FetchAllUsers");
+      },
+    });
+  },
+
   updateUser(id, data, success){
     $.ajax({
       url:  `/api/users/${id}`,

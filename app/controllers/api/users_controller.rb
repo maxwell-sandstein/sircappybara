@@ -1,8 +1,14 @@
 class Api::UsersController < ApplicationController
 
+  def index
+    @users = User.all
+
+		render 'api/users/index'
+	end
+
 	def create
 		@user = User.new(user_params)
-    @user.username = @user.username.capitalize unless @user.username.nil?
+    capitalize_user_params
 
 		if @user.save
 			login(@user)
@@ -26,6 +32,7 @@ class Api::UsersController < ApplicationController
 	def update
     @user = User.find_by_id(params[:id]);
     updating_params = user_params
+		capitalize_user_params(updating_params);
 
 		type_convert_date(updating_params)
 
@@ -38,6 +45,18 @@ class Api::UsersController < ApplicationController
 	end
 
 	private
+
+	def capitalize_user_params(updating_params = nil)
+		if (updating_params.nil?)
+		  @user.username = @user.username.capitalize unless @user.username.nil?
+	  	@user.gender = @user.gender.capitalize unless @user.gender.nil?
+			@user.breed = @user.breed.capitalize unless @user.breed.nil?
+		else
+			updating_params.username = updating_params.username.capitalize unless updating_params.username.nil?
+	  	updating_params.gender = updating_params.gender.capitalize unless updating_params.gender.nil?
+			updating_params.breed = updating_params.breed.capitalize unless updating_params.breed.nil?
+    end
+	end
 
 	def type_convert_date(updating_params)
 		 date = updating_params[:birthday]

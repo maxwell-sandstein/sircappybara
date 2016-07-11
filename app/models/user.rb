@@ -115,6 +115,10 @@ class User < ActiveRecord::Base
     User.where(id: friend_requestor_ids)
   end
 
+  def friend_requests_pending
+    outstanding_requests + friend_requests
+  end
+
   has_one(
     :relationship_made,
     class_name: :Relationship,
@@ -179,7 +183,7 @@ class User < ActiveRecord::Base
 
   def feed_posts
     friends = self.friends
-    feed_posts = []
+    feed_posts = self.wall_posts;
     friends.each do |friend|
       feed_posts = feed_posts + friend.wall_posts
     end

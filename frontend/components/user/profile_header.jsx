@@ -14,6 +14,10 @@ const FriendActions = require('../../actions/friend_actions');
 
 //REMEMBER we have props ownProfile and user
 const ProfileHeader = React.createClass({
+  getInitialState(){
+    return {requestMade: false};
+  },
+
   changeProfilePhoto(){
     cloudinary.openUploadWidget(cloudinary_options, (err, collection) => {
        if (err === null){
@@ -30,7 +34,8 @@ const ProfileHeader = React.createClass({
   },
 
   requestFriend(){
-    FriendActions.requestFriend(SessionStore.currentUser().id, this.props.user.id)
+    FriendActions.requestFriend(SessionStore.currentUser().id, this.props.user.id);
+    this.setState({requestMade: true});
   },
 
   changeCoverPhoto(){
@@ -44,22 +49,40 @@ const ProfileHeader = React.createClass({
     })
   },
 
+
   friendButton(){
-    if (SessionStore.currentUser().id === undefined ||
-      SessionStore.currentUser().id === this.props.user.id){
+   const currentUser = SessionStore.currentUser();
+  
+   if (this.state.requestMade === true){
+     return (<div className='friend-btn-container'>
+              <button className='friend-request-btn'>Pending</button>
+             </div>);
+   }
+
+    if (currentUser.id === undefined ||
+      currentUser.id === this.props.user.id){
       return '';
     }
 
-    if (SessionStore.currentUser().friends.some((friend) => {
+    if (currentUser.friends.some((friend) => {
       return friend.id === this.props.user.id;
     })){
       return (<div className='friend-btn-container'>
-               <button className='is-friend-btn'>friends</button>
+               <button className='friend-request-btn'>friends</button>
               </div>);
     } else{
-      return (<div className='friend-btn-container'>
-               <button className='friend-request-btn' onClick={this.requestFriend}>add friend</button>
-             </div>);
+
+          if (currentUser.requestsPending.some((user) => {
+            return user.id === this.props.user.id;
+          })){
+            return (<div className='friend-btn-container'>
+                     <button className='friend-request-btn'>Pending</button>
+                    </div>);
+          } else{
+            return (<div className='friend-btn-container'>
+                   <button className='friend-request-btn' onClick={this.requestFriend}>Add Friend</button>
+                 </div>);
+          }
     }
   },
 
@@ -84,10 +107,9 @@ const ProfileHeader = React.createClass({
 
         <container className="cover-photo-container" >
           <img className='cover-photo' src={this.props.user.coverPhoto} />
-          {coverPhotoBtn}
-          {this.friendButton()}
-
         </container>
+        {coverPhotoBtn}
+        {this.friendButton()}
         <span className='user-profile-name'>{this.props.user.name}</span>
       </header>
     );

@@ -47,5 +47,21 @@ module.exports = {
         console.log("Error in FriendsApiUtil #confirmRequest");
       },
     });
+  },
+
+  rejectRequest(requestorId, requesteeId, success){
+    $.ajax({
+      url:  `/api/users/${requesteeId}/friend_requests/1`,
+      method: 'DELETE',
+      success,
+      data: {
+        requestor: {
+          requestor_id: requestorId
+        }
+      },
+      error: function (xhr) {
+        console.log("Error in FriendsApiUtil #destroyRequest");
+      },
+    });
   }
 }

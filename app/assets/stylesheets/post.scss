@@ -1,0 +1,138 @@
+.new-post-input{
+  height: 50px;
+  width: 200px;
+}
+
+.new-post-panel{
+  margin-left: 40px;
+}
+
+.post-holder{
+  display: block;
+  background-color: #FFF;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 600px;
+  border: 1px solid #e9eaed;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  position:relative;
+}
+
+.post-body{
+
+}
+
+.poster-info{
+  display: flex;
+  position: relative;
+}
+
+.poster-stuff{
+  display: flex;
+  padding-bottom: 30px;
+  padding-left: 10px;
+}
+
+
+
+.poster-name{
+  color: #365899;
+  line-height: 1.38;
+  font-size: 14px;
+}
+.to{
+  font-size: 10px;
+}
+.enclosing-span{
+  color: #365899;
+  line-height: 1.38;
+  font-size: 14px;
+}
+
+.receiver-name{
+  color: #365899;
+  line-height: 1.38;
+  font-size: 14px;
+}
+
+.receiverName{
+  color: #365899;
+  line-height: 1.38;
+  font-size: 14px;
+}
+
+.post-profile-img-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-profile-img-container{
+  width: 40px;
+  height: 40px;
+}
+
+.post-body{
+  border: 1px solid #FFF;
+  padding: 0px 0px 0px 0px;
+  padding: 5px 5px 15px 5px;
+  margin: 0px 0px 10px 0px;
+  border-bottom: 1px solid #e9eaed;
+}
+
+.poster-name-container{
+  height: 40px;
+  padding-bottom: 10px;
+}
+
+.new-post-panel{
+  display: block;
+  background-color: #FFF;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 600px;
+  border: 1px solid #e9eaed;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  position:relative;
+}
+
+.new-post-content{
+  border-bottom: 1px solid #e9eaed;
+  padding: 5px 5px 12px 5px;
+  display: flex;
+}
+
+.new-post-content input{
+  border: none;
+  font-size: 14px;
+}
+
+.new-post-btn-container{
+  padding: 10px 5px 3px 5px;
+}
+
+.new-post-btn-container input{
+  background-color: #365899;
+  border-color: #365899;
+  border: 1px solid;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  padding: 5px 9px 5px 9px;
+  border-radius: 1px;
+  font-size: 14px;
+}
+
+.new-post-panel{
+  margin-left: 0px;
+}
+
+.feed-posts{
+  width:600px;
+  margin: auto;
+  margin-top: 10px;
+}

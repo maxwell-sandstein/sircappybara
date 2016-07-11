@@ -38,11 +38,11 @@ const Friends = React.createClass({
 
   render(){
     return (
-      <div className='friends-tab'>
-        <div className='friends-header'>
+      <div className='profile-tab'>
+        <div className='profile-nav-header'>
           <h2>Friends</h2>
         </div>
-        <div className='friends-display'>
+        <div className='profile-nav-display'>
 
           <ul>
             {

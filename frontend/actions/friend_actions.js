@@ -2,6 +2,8 @@
 const AppDispatcher = require('../dispatcher/dispatcher');
 const ReactRouter = require('react-router');
 const FriendConstants = require('../constants/friend_constants');
+const SessionConstants = require('../constants/session_constants');
+const SessionActions = require('../actions/session_actions')
 const ApiUtil = require('../util/friend_api_util');
 
 const FriendActions = {
@@ -16,10 +18,11 @@ const FriendActions = {
         requestee_id: friendId
       }
     }
-    ApiUtil.requestFriend(json, function(json){
-      console.log(json.message);
+    ApiUtil.requestFriend(json, function(){
+      console.log('successfully made friend request')
     })
   },
+
 
   receiveFriends: function(friends) {
     AppDispatcher.dispatch({
@@ -41,6 +44,10 @@ const FriendActions = {
 
   confirmRequest: function(requestorId, requesteeId){
     ApiUtil.confirmRequest(requestorId, requesteeId, this.removePendingRequest)
+  },
+
+  rejectRequest: function(requestorId, requesteeId){
+    ApiUtil.rejectRequest(requestorId, requesteeId, this.removePendingRequest)
   },
 
   removePendingRequest: function(newFriend){
