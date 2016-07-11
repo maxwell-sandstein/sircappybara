@@ -15,7 +15,10 @@ const SearchBar = React.createClass({
 
   handleSubmit(e){
     e.preventDefault();
-    console.log(this.selectedUserIdx);
+    const i = this.selectedUserIdx
+    if (i > 0){
+      browserHistory.push(`/profile/${i}`);
+    }
   },
 
   setSelectedUserIdx(userId){
@@ -30,9 +33,9 @@ const SearchBar = React.createClass({
 
   userToLi(user){
     let tag = (<li className='user-search-tab' onClick={this.clickUser.bind(this, user)}>
-      <img src={user.img_url}/><span>{user.name}</span>
+      <li className='search-img-container'><img src={user.img_url}/></li><span>{user.name}</span>
     </li>);
-    
+
     return tag;
   },
 
@@ -68,6 +71,15 @@ const SearchBar = React.createClass({
   },
 
   render(){
+    let autocompleted
+    let matchedUsers = this.matchedUsers();
+    if (matchedUsers.length === 0){
+      autocompleted = ""
+    }
+    else{
+      autocompleted = (<ul className='users-autocompleted'>{matchedUsers}</ul>)
+    }
+
     return(
       <div className="search-bar">
         <form className="search-bar-form" onSubmit={this.handleSubmit}>
@@ -79,9 +91,7 @@ const SearchBar = React.createClass({
             <input type="submit" className='search-submit' value="Search"/>
           </div>
         </form>
-        <ul className='users-autocompleted'>
-          {this.matchedUsers()}
-        </ul>
+        {autocompleted}
       </div>
     )
   }
