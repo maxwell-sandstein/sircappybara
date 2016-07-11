@@ -31,13 +31,19 @@ class Post < ActiveRecord::Base
 
   has_many(
     :comments,
-    class_name: :Post_comments,
+    class_name: :PostComment,
     foreign_key: :post_id
   )
 
   has_many(
     :likes,
-    class_name: :Post_like,
+    class_name: :PostLike,
     foreign_key: :post_id
+  )
+
+  has_many(
+    :likers,
+    through: :likes,
+    source: :user
   )
 end

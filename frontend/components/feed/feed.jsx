@@ -81,7 +81,12 @@ const Feed = React.createClass({
         <div className='additional-info-form'>
 
           <Header/>
-          <form onSubmit={this.handleUserInfoSubmit}>
+          <h1>Welcome To Pets Dot Com!</h1>
+          <div>
+            Please Provide Some Additional Info!
+          </div>
+          
+          <form className='splash-form' onSubmit={this.handleUserInfoSubmit}>
 
             <label>
               Breed
@@ -117,7 +122,7 @@ const Feed = React.createClass({
               {
                 this.state.posts.map((post) => {
                   return (
-                    <Post feed={true} post={post} />
+                    <Post key={post.id} feed={true} post={post} />
                   )
                 })
               }

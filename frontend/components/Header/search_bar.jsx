@@ -9,6 +9,12 @@ const SearchBar = React.createClass({
     return {searchInput: ""};
   },
 
+  componentWillReceiveProps(){
+    this.setState({searchInput: ""});
+    this.selectedUserIdx = -1;
+    this.justClicked = false;
+  },
+
   updateSearch(e){
     this.setState({searchInput: e.currentTarget.value});
   },
@@ -87,8 +93,9 @@ const SearchBar = React.createClass({
             <input className="search-input" value={this.state.searchInput}
               onChange={this.updateSearch}
             />
-
-            <input type="submit" className='search-submit' value="Search"/>
+          <button type="submit" className='search-submit' >
+            <i className="fa fa-search"></i>
+          </button>
           </div>
         </form>
         {autocompleted}

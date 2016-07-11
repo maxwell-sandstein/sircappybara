@@ -30,6 +30,7 @@ PostStore.feedPosts = function(){
 
 PostStore.addPost = function(post){
   _wallPosts[post.id] = post;
+  _feedPosts[post.id] = post;
 }
 
 PostStore.updatePosts = function(posts){

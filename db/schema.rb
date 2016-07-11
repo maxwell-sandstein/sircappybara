@@ -88,14 +88,14 @@ ActiveRecord::Schema.define(version: 20160708082026) do
   add_index "photos", ["img_url", "album_id"], name: "index_photos_on_img_url_and_album_id", using: :btree
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer  "photo_id",   null: false
+    t.integer  "post_id",   null: false
     t.integer  "user_id",    null: false
     t.text     "body",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "post_comments", ["photo_id"], name: "index_post_comments_on_photo_id", using: :btree
+  add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id", using: :btree
   add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
 
   create_table "post_likes", force: :cascade do |t|

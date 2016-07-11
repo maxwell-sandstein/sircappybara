@@ -102,9 +102,9 @@
   padding: 0 10px;
   background-color: #f6f7f9;
   color: #4b4f56;
-  background-clip: padding-box;
   font-family: inherit;
   font-weight: bold;
+  font-size: 14px;
   border-color: rgba(0, 0, 0, .4);
   border-radius: 2px;
 }
@@ -119,6 +119,16 @@
 
 .cover-photo-btn{
   position: absolute;
-  left: 20px;
-  top: 30px;
+  left: 9px;
+  top: 11px;
+  cursor: pointer;
+}
+
+.profile-photo-btn{
+  font-size: 20px;
+  line-height: 10.0em;
+  position: absolute;
+  top: 140px;
+  left: 135px;
+  cursor: pointer;
 }

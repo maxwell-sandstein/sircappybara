@@ -52,7 +52,7 @@ const ProfileHeader = React.createClass({
 
   friendButton(){
    const currentUser = SessionStore.currentUser();
-  
+
    if (this.state.requestMade === true){
      return (<div className='friend-btn-container'>
               <button className='friend-request-btn'>Pending</button>
@@ -68,7 +68,7 @@ const ProfileHeader = React.createClass({
       return friend.id === this.props.user.id;
     })){
       return (<div className='friend-btn-container'>
-               <button className='friend-request-btn'>friends</button>
+               <button className='friend-request-btn'>Friends</button>
               </div>);
     } else{
 
@@ -94,8 +94,8 @@ const ProfileHeader = React.createClass({
     let profilePhotoBtn = <div></div>;
     let coverPhotoBtn = <div></div>;
     if (this.props.ownProfile === true){
-      profilePhotoBtn = <button className="profile-photo-btn" onClick={this.changeProfilePhoto}> update profile photo</button>;
-      coverPhotoBtn = <button className="cover-photo-btn" onClick={this.changeCoverPhoto}>update cover photo</button>;
+      profilePhotoBtn = <i className="fa fa-camera profile-photo-btn" onClick={this.changeProfilePhoto}></i>;
+      coverPhotoBtn = <i className="fa fa-camera cover-photo-btn" onClick={this.changeProfilePhoto}></i>;
     }
     //make this.props.user.profilePic !== undefined  ? our pic else a black image
     return (

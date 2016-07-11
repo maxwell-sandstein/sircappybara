@@ -21,6 +21,20 @@ module.exports = {
       }
     });
   },
+
+  createComment(json, success){
+    $.ajax({
+      url: `/api/comments`,
+      type: 'POST',
+      dataType: 'json',
+      data: json,
+      success,
+      error(xhr) {
+        console.log('error in submitPost')
+      }
+    });
+  },
+
   fetchFeedPosts(userId, success){
     $.ajax({
 			url:  `/api/users/${userId}/feeds`,
@@ -31,5 +45,28 @@ module.exports = {
 			},
 		});
   },
-
+  likePost(json, success) {
+    $.ajax({
+      url: `/api/likes`,
+      type: 'POST',
+      dataType: 'json',
+      data: json,
+      success,
+      error(xhr) {
+        console.log('error in likePost')
+      }
+    });
+  },
+  unlikePost(json, success) {
+    $.ajax({
+      url: `/api/likes/1`,
+      type: 'DELETE',
+      dataType: 'json',
+      data: json,
+      success,
+      error(xhr) {
+        console.log('error in likePost')
+      }
+    });
+  }
 }

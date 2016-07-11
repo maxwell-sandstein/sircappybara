@@ -42,6 +42,38 @@ const PostActions = {
       actionType: PostConstants.FEED_POSTS,
       posts: posts
     });
+  },
+
+  likePost(postId, likerId){
+    const json = {
+      like: {
+          post_id: postId,
+          user_id: likerId
+      }
+    }
+    ApiUtil.likePost(json, this.receivePost)
+  },
+
+  unlikePost(postId, likerId){
+    const json = {
+      like: {
+          post_id: postId,
+          user_id: likerId
+      }
+    }
+    ApiUtil.unlikePost(json, this.receivePost)
+  },
+
+  createComment(body, commentorId, postId){
+    const json = {
+      comment: {
+        post_id: postId,
+        user_id: commentorId,
+        body: body
+      }
+    }
+
+    ApiUtil.createComment(json, this.receivePost)
   }
 
 };
