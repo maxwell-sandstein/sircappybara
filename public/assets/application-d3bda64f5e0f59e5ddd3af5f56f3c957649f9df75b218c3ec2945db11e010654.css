@@ -751,10 +751,12 @@ body ul {
   left: 9px;
   top: 11px;
   cursor: pointer;
+  color: #FFF;
 }
 
-/* line 127, /Users/oski369/app_academy/mrcapstone/app/assets/stylesheets/profile.scss */
+/* line 128, /Users/oski369/app_academy/mrcapstone/app/assets/stylesheets/profile.scss */
 .profile-photo-btn {
+  color: #FFF;
   font-size: 20px;
   line-height: 10.0em;
   position: absolute;

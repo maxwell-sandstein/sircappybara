@@ -95,7 +95,7 @@ const ProfileHeader = React.createClass({
     let coverPhotoBtn = <div></div>;
     if (this.props.ownProfile === true){
       profilePhotoBtn = <i className="fa fa-camera profile-photo-btn" onClick={this.changeProfilePhoto}></i>;
-      coverPhotoBtn = <i className="fa fa-camera cover-photo-btn" onClick={this.changeProfilePhoto}></i>;
+      coverPhotoBtn = <i className="fa fa-camera cover-photo-btn" onClick={this.changeCoverPhoto}></i>;
     }
     //make this.props.user.profilePic !== undefined  ? our pic else a black image
     return (

@@ -14,6 +14,7 @@ const NewComment = React.createClass({
     e.preventDefault();
     const currentUserId = SessionStore.currentUser().id;
     PostActions.createComment(this.state.comment, currentUserId, this.props.post.id)
+    this.setState({comment: ""})
   },
 
   updateComment(e){
@@ -27,7 +28,7 @@ const NewComment = React.createClass({
           <li className='comment-img-container curr-user'>
             <img src={SessionStore.currentUser().img_url} className='comment-img'/>
           </li>
-          <input className='comment-txt' type='text' onChange={this.updateComment} placeholder="Write A Comment..."/>
+          <input className='comment-txt' type='text' value={this.state.comment} onChange={this.updateComment} placeholder="Write A Comment..."/>
           <input type='submit' className='comment-submit' value='Add Comment'/>
         </form>
       </div>

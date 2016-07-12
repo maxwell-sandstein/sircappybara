@@ -11675,7 +11675,7 @@ return jQuery;
 	var SessionActions = __webpack_require__(254);
 	
 	var Home = __webpack_require__(282);
-	var Profile = __webpack_require__(302);
+	var Profile = __webpack_require__(303);
 	
 	var Modal = __webpack_require__(261);
 	var ReactRouter = __webpack_require__(169);
@@ -48139,7 +48139,7 @@ return jQuery;
 	var ReactRouter = __webpack_require__(169);
 	var browserHistory = ReactRouter.browserHistory;
 	
-	var NewComment = __webpack_require__(310);
+	var NewComment = __webpack_require__(302);
 	
 	var SessionStore = __webpack_require__(231);
 	
@@ -48298,14 +48298,62 @@ return jQuery;
 	'use strict';
 	
 	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(169);
+	var browserHistory = ReactRouter.browserHistory;
+	var SessionStore = __webpack_require__(231);
+	
+	var PostActions = __webpack_require__(297);
+	
+	var NewComment = React.createClass({
+	  displayName: 'NewComment',
+	  getInitialState: function getInitialState() {
+	    return { comment: "" };
+	  },
+	  handleSubmit: function handleSubmit(e) {
+	    e.preventDefault();
+	    var currentUserId = SessionStore.currentUser().id;
+	    PostActions.createComment(this.state.comment, currentUserId, this.props.post.id);
+	    this.setState({ comment: "" });
+	  },
+	  updateComment: function updateComment(e) {
+	    this.setState({ comment: e.target.value });
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'new-comment-form' },
+	      React.createElement(
+	        'form',
+	        { onSubmit: this.handleSubmit },
+	        React.createElement(
+	          'li',
+	          { className: 'comment-img-container curr-user' },
+	          React.createElement('img', { src: SessionStore.currentUser().img_url, className: 'comment-img' })
+	        ),
+	        React.createElement('input', { className: 'comment-txt', type: 'text', value: this.state.comment, onChange: this.updateComment, placeholder: 'Write A Comment...' }),
+	        React.createElement('input', { type: 'submit', className: 'comment-submit', value: 'Add Comment' })
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = NewComment;
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
 	var SessionStore = __webpack_require__(231);
 	var SessionActions = __webpack_require__(254);
 	var Header = __webpack_require__(288);
 	var UserStore = __webpack_require__(290);
 	var UserActions = __webpack_require__(284);
-	var ProfileHeader = __webpack_require__(303);
-	var ProfileNavBar = __webpack_require__(305);
-	var ProfileMain = __webpack_require__(306);
+	var ProfileHeader = __webpack_require__(304);
+	var ProfileNavBar = __webpack_require__(306);
+	var ProfileMain = __webpack_require__(307);
 	
 	var ProfilePage = React.createClass({
 	  displayName: 'ProfilePage',
@@ -48387,7 +48435,7 @@ return jQuery;
 	module.exports = ProfilePage;
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48398,7 +48446,7 @@ return jQuery;
 	
 	var UserStore = __webpack_require__(290);
 	var UserActions = __webpack_require__(284);
-	var PhotoActions = __webpack_require__(304);
+	var PhotoActions = __webpack_require__(305);
 	var FriendActions = __webpack_require__(294);
 	
 	//need a add friend vs friend button contingent on user logged in and based on friends
@@ -48506,7 +48554,7 @@ return jQuery;
 	    var coverPhotoBtn = React.createElement('div', null);
 	    if (this.props.ownProfile === true) {
 	      profilePhotoBtn = React.createElement('i', { className: 'fa fa-camera profile-photo-btn', onClick: this.changeProfilePhoto });
-	      coverPhotoBtn = React.createElement('i', { className: 'fa fa-camera cover-photo-btn', onClick: this.changeProfilePhoto });
+	      coverPhotoBtn = React.createElement('i', { className: 'fa fa-camera cover-photo-btn', onClick: this.changeCoverPhoto });
 	    }
 	    //make this.props.user.profilePic !== undefined  ? our pic else a black image
 	    return React.createElement(
@@ -48537,7 +48585,7 @@ return jQuery;
 	module.exports = ProfileHeader;
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48566,7 +48614,7 @@ return jQuery;
 	module.exports = PhotoActions;
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48622,15 +48670,15 @@ return jQuery;
 	module.exports = ProfileNavBar;
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var Timeline = __webpack_require__(307);
-	var About = __webpack_require__(308);
-	var Friends = __webpack_require__(309);
+	var Timeline = __webpack_require__(308);
+	var About = __webpack_require__(309);
+	var Friends = __webpack_require__(310);
 	
 	var Main = React.createClass({
 	  displayName: 'Main',
@@ -48660,7 +48708,7 @@ return jQuery;
 	module.exports = Main;
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48757,7 +48805,7 @@ return jQuery;
 	module.exports = Timeline;
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48849,7 +48897,7 @@ return jQuery;
 	module.exports = About;
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48934,53 +48982,6 @@ return jQuery;
 	});
 	
 	module.exports = Friends;
-
-/***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(169);
-	var browserHistory = ReactRouter.browserHistory;
-	var SessionStore = __webpack_require__(231);
-	
-	var PostActions = __webpack_require__(297);
-	
-	var NewComment = React.createClass({
-	  displayName: 'NewComment',
-	  getInitialState: function getInitialState() {
-	    return { comment: "" };
-	  },
-	  handleSubmit: function handleSubmit(e) {
-	    e.preventDefault();
-	    var currentUserId = SessionStore.currentUser().id;
-	    PostActions.createComment(this.state.comment, currentUserId, this.props.post.id);
-	  },
-	  updateComment: function updateComment(e) {
-	    this.setState({ comment: e.target.value });
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'new-comment-form' },
-	      React.createElement(
-	        'form',
-	        { onSubmit: this.handleSubmit },
-	        React.createElement(
-	          'li',
-	          { className: 'comment-img-container curr-user' },
-	          React.createElement('img', { src: SessionStore.currentUser().img_url, className: 'comment-img' })
-	        ),
-	        React.createElement('input', { className: 'comment-txt', type: 'text', onChange: this.updateComment, placeholder: 'Write A Comment...' }),
-	        React.createElement('input', { type: 'submit', className: 'comment-submit', value: 'Add Comment' })
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = NewComment;
 
 /***/ }
 /******/ ]);
