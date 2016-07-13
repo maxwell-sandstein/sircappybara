@@ -50,12 +50,10 @@ class Api::UsersController < ApplicationController
 		  @user.username = @user.username.capitalize unless @user.username.nil?
 	  	@user.gender = @user.gender.capitalize unless @user.gender.nil?
 			@user.breed = @user.breed.capitalize unless @user.breed.nil?
-			@user.email = @user.email.capitalize unless @user.email.nil?
 		else
 			updating_params[:username] = updating_params[:username].capitalize unless updating_params[:username].nil?
 	  	updating_params[:gender] = updating_params[:gender].capitalize unless updating_params[:gender].nil?
 			updating_params[:breed] = updating_params[:breed].capitalize unless updating_params[:breed].nil?
-			updating_params[:email] = updating_params[:breed].capitalize unless updating_params[:email].nil?
     end
 	end
 
