@@ -35,7 +35,6 @@ class Api::UsersController < ApplicationController
 		capitalize_user_params(updating_params);
 
 		type_convert_date(updating_params)
-    debugger
 		if @user.update(updating_params)
       render "api/users/show"
 		else
