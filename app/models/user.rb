@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates :username, :password_digest, :email, :session_token, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :session_token, :email, uniqueness: true
-  validates :gender, inclusion: {in: ["male", "female"]}, allow_nil: true
+  validates :gender, inclusion: {in: ["Male", "Female"]}, allow_nil: true
   after_initialize :ensure_session_token
   after_create :create_albums
 
