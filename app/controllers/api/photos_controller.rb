@@ -11,6 +11,7 @@ class Api::PhotosController < ApplicationController
 
     if @photo.save
       @user = @photo.user
+      @new_photo = 'true'
       render "api/users/show_profile"
     else
       render json: {message: "photo failed to save"},

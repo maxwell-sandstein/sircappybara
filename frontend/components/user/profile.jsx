@@ -44,8 +44,9 @@ const ProfilePage = React.createClass({
   updateProfileUser(){
     let profileUser = UserStore.profileUser();
 
-    if (this.state.user.id !== profileUser.id){
+    if (this.state.user.id !== profileUser.id || profileUser.newPhoto === 'true'){
       this.setState({user: profileUser}, this.checkForOwnProfile);
+      profileUser.newPhoto = 'false'
     }
   },
 
