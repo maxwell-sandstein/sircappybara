@@ -1,6 +1,8 @@
 class Api::SessionsController < ApplicationController
 
 	def create
+    capitalize_email
+
 		@user = User.find_by_credentials(
       params[:user][:email],
       params[:user][:password]
@@ -34,4 +36,9 @@ class Api::SessionsController < ApplicationController
 		end
 	end
 
+  private
+
+	def capitalize_email
+    params[:user][:email] = params[:user][:email].capitalize unless params[:user][:email].nil?
+	end
 end

@@ -38,8 +38,8 @@ const SearchBar = React.createClass({
   },
 
   userToLi(user){
-    let tag = (<li className='user-search-tab' onClick={this.clickUser.bind(this, user)}>
-      <li className='search-img-container'><img src={user.img_url}/></li><span>{user.name}</span>
+    let tag = (<li key={user.id} className='user-search-tab' onClick={this.clickUser.bind(this, user)}>
+      <div className='search-img-container'><img src={user.img_url}/></div><span>{user.name}</span>
     </li>);
 
     return tag;
@@ -53,10 +53,11 @@ const SearchBar = React.createClass({
       return users;
     }
     let firstUserId
+    const searchInput = this.state.searchInput.toLowerCase()
 
     this.props.users.forEach((user) => {
       const username = user.name.slice(0, searchInputLength).toLowerCase()
-      const searchInput = this.state.searchInput.toLowerCase()
+
       if (username === searchInput ){
         firstUserId = user.id
         users.push(this.userToLi(user))

@@ -16,7 +16,7 @@ const About = React.createClass({
 
   gender(){
     if (this.props.user.gender !== null){
-      return <div className='info-div'><span>Gender {this.props.user.gender}</span></div>;
+      return <div className='info-div'><span>{this.props.user.gender}</span></div>;
     } else{
       return "";
     }
@@ -37,7 +37,7 @@ const About = React.createClass({
           <h2>About</h2>
         </div>
         <div className='profile-nav-display'>
-            <span>{this.props.user.name}</span>
+            <span className='profile-nav-name'>{this.props.user.name}</span>
             {this.gender()}
             {this.breed()}
             {this.birthday()}

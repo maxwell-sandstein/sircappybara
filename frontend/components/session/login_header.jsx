@@ -11,7 +11,7 @@ const Modal = require("react-modal");
 
 const LoginHeader = React.createClass({
 
-	DEMO_EMAIL: "demo@demo.com",
+	DEMO_EMAIL: "Demo@demo.com",
 
 	DEMO_PASSWORD: "password",
 

@@ -80,7 +80,7 @@ const ProfileHeader = React.createClass({
                     </div>);
           } else{
             return (<div className='friend-btn-container'>
-                   <button className='friend-request-btn' onClick={this.requestFriend}>Add Friend</button>
+                   <button className='add-friend-btn' onClick={this.requestFriend}>Add Friend</button>
                  </div>);
           }
     }
